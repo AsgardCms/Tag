@@ -15,12 +15,17 @@ class TagController extends AdminBaseController
      * @var TagRepository
      */
     private $tag;
+    /**
+     * @var TagManager
+     */
+    private $tagManager;
 
-    public function __construct(TagRepository $tag)
+    public function __construct(TagRepository $tag, TagManager $tagManager)
     {
         parent::__construct();
 
         $this->tag = $tag;
+        $this->tagManager = $tagManager;
     }
 
     /**
@@ -40,11 +45,11 @@ class TagController extends AdminBaseController
      *
      * @return Response
      */
-    public function create(TagManager $tagManager)
+    public function create()
     {
-        dd($tagManager->getNamespaces());
+        $namespaces = $this->tagManager->getNamespaces();
 
-        return view('tag::admin.tags.create');
+        return view('tag::admin.tags.create', compact('namespaces'));
     }
 
     /**
@@ -69,7 +74,9 @@ class TagController extends AdminBaseController
      */
     public function edit(Tag $tag)
     {
-        return view('tag::admin.tags.edit', compact('tag'));
+        $namespaces = $this->tagManager->getNamespaces();
+
+        return view('tag::admin.tags.edit', compact('tag', 'namespaces'));
     }
 
     /**
