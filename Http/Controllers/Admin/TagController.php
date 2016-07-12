@@ -47,7 +47,7 @@ class TagController extends AdminBaseController
      */
     public function create()
     {
-        $namespaces = $this->tagManager->getNamespaces();
+        $namespaces = $this->formatNamespaces($this->tagManager->getNamespaces());
 
         return view('tag::admin.tags.create', compact('namespaces'));
     }
@@ -74,7 +74,7 @@ class TagController extends AdminBaseController
      */
     public function edit(Tag $tag)
     {
-        $namespaces = $this->tagManager->getNamespaces();
+        $namespaces = $this->formatNamespaces($this->tagManager->getNamespaces());
 
         return view('tag::admin.tags.edit', compact('tag', 'namespaces'));
     }
@@ -106,5 +106,15 @@ class TagController extends AdminBaseController
 
         return redirect()->route('admin.tag.tag.index')
             ->withSuccess(trans('core::core.messages.resource deleted', ['name' => trans('tag::tags.tags')]));
+    }
+
+    private function formatNamespaces(array $namespaces)
+    {
+        $new = [];
+        foreach ($namespaces as $namespace) {
+            $new[$namespace] = $namespace;
+        }
+
+        return $new;
     }
 }
