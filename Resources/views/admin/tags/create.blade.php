@@ -42,7 +42,7 @@
                 <div class="box-body">
                     <div class="form-group {{ $errors->has('namespace') ? 'has-error' : '' }}">
                         {!! Form::label('namespace', trans('tag::tags.namespace')) !!}
-                        {!! Form::select('namespace', [] , old('namespace') , ['class' => 'selectize']) !!}
+                        {!! Form::select('namespace', $namespaces, old('namespace') , ['class' => 'selectize']) !!}
                         {!! $errors->first('namespace', '<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
