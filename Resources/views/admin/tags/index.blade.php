@@ -63,12 +63,6 @@
                         <?php endforeach; ?>
                         <?php endif; ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>{{ trans('core::core.table.created at') }}</th>
-                            <th>{{ trans('core::core.table.actions') }}</th>
-                        </tr>
-                        </tfoot>
                     </table>
                     <!-- /.box-body -->
                 </div>
