@@ -1,0 +1,16 @@
+{
+    "name": "Tag",
+    "alias": "tag",
+    "description": "",
+    "keywords": [],
+    "active": 1,
+    "order": 1,
+    "providers": [
+        "Modules\\Tag\\Providers\\TagServiceProvider",
+        "Modules\\Tag\\Providers\\RouteServiceProvider"
+    ],
+    "aliases":{},
+    "files": [
+        
+    ]
+}
