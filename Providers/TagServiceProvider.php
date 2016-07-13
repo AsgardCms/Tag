@@ -71,6 +71,9 @@ class TagServiceProvider extends ServiceProvider
 
     protected function registerBladeTags()
     {
+        if (app()->environment() === 'testing') {
+            return;
+        }
         $this->app['blade.compiler']->directive('tags', function ($value) {
             return "<?php echo TagWidget::show(array$value); ?>";
         });
