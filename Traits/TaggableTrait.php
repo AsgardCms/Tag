@@ -2,6 +2,7 @@
 
 namespace Modules\Tag\Traits;
 
+use Illuminate\Database\Eloquent\Builder;
 use Modules\Tag\Entities\Tag;
 
 trait TaggableTrait
@@ -38,7 +39,7 @@ trait TaggableTrait
      */
     public function tags()
     {
-        return $this->morphToMany(static::$tagsModel, 'taggable', 'tagged', 'taggable_id', 'tag_id');
+        return $this->morphToMany(static::$tagsModel, 'taggable', 'tag__tagged', 'taggable_id', 'tag_id');
     }
 
     /**
@@ -62,6 +63,120 @@ trait TaggableTrait
     }
 
     /**
+     * Attaches or detaches the given tags.
+     * @param  string|array $tags
+     * @param  string $type
+     * @return bool
+     */
+    public function setTags($tags, $type = 'name')
+    {
+        // Get the current entity tags
+        $entityTags = $this->tags->lists($type)->all();
+
+        // Prepare the tags to be added and removed
+        $tagsToAdd = array_diff($tags, $entityTags);
+        $tagsToDel = array_diff($entityTags, $tags);
+
+        // Detach the tags
+        if (count($tagsToDel) > 0) {
+            $this->untag($tagsToDel);
+        }
+
+        // Attach the tags
+        if (count($tagsToAdd) > 0) {
+            $this->tag($tagsToAdd);
+        }
+
+        return true;
+    }
+
+    /**
+     * Attaches multiple tags to the entity.
+     *
+     * @param  string|array  $tags
+     * @return bool
+     */
+    public function tag($tags)
+    {
+        foreach ($tags as $tag) {
+            $this->addTag($tag);
+        }
+
+        return true;
+    }
+
+    /**
+     * Attaches the given tag to the entity.
+     * @param  string $name
+     * @return void
+     */
+    public function addTag($name)
+    {
+        $tag = $this->createTagsModel()->where('namespace', $this->getEntityClassName())
+            ->with('translations')
+            ->whereHas('translations', function (Builder $q) use ($name) {
+            $q->where('slug', $this->generateTagSlug($name));
+        })->first();
+
+        if ($tag === null) {
+            $tag = new Tag([
+                'namespace' => $this->getEntityClassName(),
+                locale() => [
+                    'slug' => $this->generateTagSlug($name),
+                    'name' => $name,
+                ],
+            ]);
+        }
+        if ($tag->exists === false) {
+            $tag->save();
+        }
+
+        if ($this->tags->contains($tag->id) === false) {
+            $this->tags()->attach($tag);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function untag($tags = null)
+    {
+        $tags = $tags ?: $this->tags->lists('name')->all();
+
+        foreach ($tags as $tag) {
+            $this->removeTag($tag);
+        }
+
+        return true;
+    }
+
+    /**
+     * Detaches the given tag from the entity.
+     * @param string $name
+     * @return void
+     */
+    public function removeTag($name)
+    {
+        $namespace = $this->getEntityClassName();
+
+        $tag = $this
+            ->createTagsModel()
+            ->whereNamespace($namespace)
+            ->where(function ($query) use ($name) {
+                $query
+                    ->orWhere('name', $name)
+                    ->orWhere('slug', $name)
+                ;
+            })
+            ->first()
+        ;
+
+        if ($tag) {
+            $this->tags()->detach($tag);
+        }
+    }
+
+    /**
      * Returns the entity class name.
      *
      * @return string
@@ -73,5 +188,15 @@ trait TaggableTrait
         }
 
         return $this->tags()->getMorphClass();
+    }
+
+    /**
+     * Generate the tag slug using the given name.
+     * @param string $name
+     * @return string
+     */
+    protected function generateTagSlug($name)
+    {
+        return str_slug($name);
     }
 }

@@ -40,4 +40,42 @@ interface TaggableInterface
      * @return \Illuminate\Database\Eloquent\Model
      */
     public static function createTagsModel();
+
+    /**
+     * Attaches or detaches the given tags.
+     * @param  string|array $tags
+     * @param  string $type
+     * @return bool
+     */
+    public function setTags($tags, $type = 'name');
+
+    /**
+     * Detaches multiple tags from the entity or if no tags are
+     * passed, removes all the attached tags from the entity.
+     * @param  string|array|null $tags
+     * @return bool
+     */
+    public function untag($tags = null);
+
+    /**
+     * Detaches the given tag from the entity.
+     * @param  string  $name
+     * @return void
+     */
+    public function removeTag($name);
+
+    /**
+     * Attaches multiple tags to the entity.
+     *
+     * @param  string|array  $tags
+     * @return bool
+     */
+    public function tag($tags);
+
+    /**
+     * Attaches the given tag to the entity.
+     * @param  string $name
+     * @return void
+     */
+    public function addTag($name);
 }
