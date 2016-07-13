@@ -4,6 +4,7 @@ namespace Modules\Tag\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
+use Modules\Tag\Display\TagWidget;
 use Modules\Tag\Entities\Tag;
 use Modules\Tag\Repositories\Cache\CacheTagDecorator;
 use Modules\Tag\Repositories\Eloquent\EloquentTagRepository;
@@ -29,11 +30,16 @@ class TagServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerBindings();
+
+        $this->app->singleton('tag.widget', function ($app) {
+            return new TagWidget($app[TagRepository::class]);
+        });
     }
 
     public function boot()
     {
         $this->publishConfig('tag', 'permissions');
+        $this->registerBladeTags();
     }
 
     /**
@@ -60,6 +66,13 @@ class TagServiceProvider extends ServiceProvider
 
         $this->app->singleton(TagManager::class, function () {
             return new TagManagerRepository();
+        });
+    }
+
+    protected function registerBladeTags()
+    {
+        $this->app['blade.compiler']->directive('tags', function ($value) {
+            return "<?php echo TagWidget::show(array$value); ?>";
         });
     }
 }

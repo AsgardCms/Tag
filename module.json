@@ -9,8 +9,10 @@
         "Modules\\Tag\\Providers\\TagServiceProvider",
         "Modules\\Tag\\Providers\\RouteServiceProvider"
     ],
-    "aliases":{},
+    "aliases":{
+        "TagWidget": "Modules\\Tag\\Display\\Facade\\TagWidget"
+    },
     "files": [
-        
+
     ]
 }
