@@ -30,17 +30,14 @@ class TagManagerRepositoryTest extends BaseTestCase
     /** @test */
     public function it_adds_items_to_array()
     {
-        $this->tagManager->registerNamespace($this->getEntityMock());
+        $this->tagManager->registerNamespace(new TestModel());
 
         $this->assertCount(1, $this->tagManager->getNamespaces());
     }
+}
 
-    private function getEntityMock()
-    {
-        return new class implements TaggableInterface
- {
-     use TaggableTrait, NamespacedEntity;
-     protected static $entityNamespace = 'asgardcms/media';
- };
-    }
+class TestModel implements TaggableInterface
+{
+    use TaggableTrait, NamespacedEntity;
+    protected static $entityNamespace = 'asgardcms/media';
 }
