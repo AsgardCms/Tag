@@ -9,6 +9,11 @@
 
 [![Slack](http://slack.asgardcms.com/badge.svg)](http://slack.asgardcms.com/)
 
+
+| Branch | Travis-ci |
+| ---------------- | --------------- |
+| master  | [![Build Status](https://travis-ci.org/AsgardCms/Tag.svg?branch=master)](https://travis-ci.org/AsgardCms/Tag)  |
+
 ***
 
 **WIP**
