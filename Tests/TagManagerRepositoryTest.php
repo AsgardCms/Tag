@@ -37,10 +37,10 @@ class TagManagerRepositoryTest extends BaseTestCase
 
     private function getEntityMock()
     {
-        return new class implements TaggableInterface {
-            use TaggableTrait, NamespacedEntity;
-            protected static $entityNamespace = 'asgardcms/media';
-        };
+        return new class implements TaggableInterface
+ {
+     use TaggableTrait, NamespacedEntity;
+     protected static $entityNamespace = 'asgardcms/media';
+ };
     }
 }
-

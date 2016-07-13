@@ -66,6 +66,7 @@ class TagWidget
         if ($this->entity === null) {
             request()->old('tags');
         }
+
         return request()->old('tags', $this->entity->tags->lists('slug')->toArray());
     }
 }
