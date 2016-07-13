@@ -68,7 +68,7 @@ trait TaggableTrait
      * @param  string $type
      * @return bool
      */
-    public function setTags($tags, $type = 'name')
+    public function setTags($tags, $type = 'slug')
     {
         // Get the current entity tags
         $entityTags = $this->tags->lists($type)->all();
@@ -157,19 +157,13 @@ trait TaggableTrait
      */
     public function removeTag($name)
     {
-        $namespace = $this->getEntityClassName();
-
-        $tag = $this
-            ->createTagsModel()
-            ->whereNamespace($namespace)
-            ->where(function ($query) use ($name) {
-                $query
-                    ->orWhere('name', $name)
-                    ->orWhere('slug', $name)
-                ;
-            })
-            ->first()
-        ;
+        $tag = $this->createTagsModel()
+            ->where('namespace', $this->getEntityClassName())
+            ->with('translations')
+            ->whereHas('translations', function (Builder $q) use ($name) {
+                $q->orWhere('name', $this->generateTagSlug($name));
+                $q->orWhere('slug', $this->generateTagSlug($name));
+            })->first();
 
         if ($tag) {
             $this->tags()->detach($tag);
