@@ -13,4 +13,20 @@ class CacheTagDecorator extends BaseCacheDecorator implements TagRepository
         $this->entityName = 'tag.tags';
         $this->repository = $tag;
     }
+
+    /**
+     * Get all the tags in the given namespace
+     * @param string $namespace
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function allForNamespace($namespace)
+    {
+        return $this->cache
+            ->tags($this->entityName, 'global')
+            ->remember("{$this->locale}.{$this->entityName}.allForNamespace.{$namespace}", $this->cacheTime,
+                function () use ($namespace) {
+                    return $this->repository->allForNamespace($namespace);
+                }
+            );
+    }
 }
