@@ -17,10 +17,8 @@ script: phpunit
 sudo: false
 
 notifications:
-  slack: asgardcms:rQqM7V2EoZOrsv6GgAemZyOS
   email:
     - n.widart@gmail.com
-    - josh@joshbrown.me
 
 matrix:
   allow_failures:
