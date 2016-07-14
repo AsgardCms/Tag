@@ -113,9 +113,9 @@ Example in your repository :
 
 ``` php
 // Get all files with all given tags
-$files = $this->file->withTag(['your-first-tag', 'some-other-tag'])->get();
+$files = $this->file->whereTag(['your-first-tag', 'some-other-tag'])->get();
 
 // Get all files with the given tag
-$files = $this->file->withTag('your-first-tag')->get();
+$files = $this->file->whereTag('your-first-tag')->get();
 ```
 
