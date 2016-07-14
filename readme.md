@@ -62,7 +62,7 @@ protected static $entityNamespace = 'asgardcms/media';
  
 ### 2. Defining a new namespace to use for tags
  
-In your module Service Provider you now need to add the namespace it's going to use. This can be done using the `TagManager` interface.
+In your module Service Provider, `boot()` method, you now need to add the namespace it's going to use. This can be done using the `TagManager` interface.
 
 ``` php
 $this->app[TagManager::class]->registerNamespace(new File());
