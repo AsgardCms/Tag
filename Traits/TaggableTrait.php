@@ -34,6 +34,33 @@ trait TaggableTrait
     }
 
     /**
+     * Get all the entities with the given tag(s)
+     * Optionally specify the column on which
+     * to perform the search operation.
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  string|array  $tags
+     * @param  string  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereTag(Builder $query, $tags, $type = 'slug')
+    {
+        if (is_string($tags) === true) {
+            $tags = [$tags];
+        }
+        $query->with('translations');
+
+        foreach ($tags as $tag) {
+            $query->whereHas('tags', function ($query) use ($type, $tag) {
+                $query->whereHas('translations', function ($query) use ($type, $tag) {
+                    $query->where($type, $tag);
+                });
+            });
+        }
+
+        return $query;
+    }
+
+    /**
      * Returns the entity Eloquent tag model object.
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */

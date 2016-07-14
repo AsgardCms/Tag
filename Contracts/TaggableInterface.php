@@ -2,6 +2,8 @@
 
 namespace Modules\Tag\Contracts;
 
+use Illuminate\Database\Eloquent\Builder;
+
 interface TaggableInterface
 {
     /**
@@ -22,6 +24,17 @@ interface TaggableInterface
      * @return void
      */
     public static function setTagsModel($model);
+
+    /**
+     * Get all the entities with the given tag(s)
+     * Optionally specify the column on which
+     * to perform the search operation.
+     * @param  \Illuminate\Database\Eloquent\Builder $query
+     * @param  string|array  $tags
+     * @param  string  $type
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeWhereTag(Builder $query, $tags, $type = 'slug');
 
     /**
      * Returns the entity Eloquent tag model object.
