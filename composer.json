@@ -1,6 +1,7 @@
 {
   "name": "asgardcms/tag-module",
-  "description": "Managing tags in AsgardCMS",
+  "description": "Tag management in AsgardCMS",
+  "license": "MIT",
   "keywords": [
     "asgardcms",
     "tags",
