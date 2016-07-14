@@ -41,7 +41,7 @@ Go to the Admin role, and give yourself the permissions for the Tag Module.
 
 Any of you entities can have tags attached to it. To enable this your entity needs to implement an interface, use a trait and that's it.
 
-### Add interface & trait on desired entity
+### 1. Add interface & trait on desired entity
 
 Your entity needs to implement the `Modules\Tag\Contracts\TaggableInterface` interface.
 
@@ -60,17 +60,17 @@ Example:
 protected static $entityNamespace = 'asgardcms/media';
 ```
  
-### Defining a new namespace to use for tags
+### 2. Defining a new namespace to use for tags
  
-In your module Service Provider you now need to add the namespace its going to use. This can be done using the `TagManager` interface.
+In your module Service Provider you now need to add the namespace it's going to use. This can be done using the `TagManager` interface.
 
 ``` php
 $this->app[TagManager::class]->registerNamespace(new File());
 ```
 
-And with this the Tag Module is aware of the new namespace.
+And with this, the Tag Module is aware of the new namespace.
 
-### Display the tag field on your views
+### 3. Display the tag field on your views
 
 By using a custom blade directive you can include the tags field on your views. 
 
@@ -78,11 +78,11 @@ By using a custom blade directive you can include the tags field on your views.
 - (optional) Second argument is the entity to fetch the tags for (pre-filling the input if tags are present for given entity).
 - (optional) Third and last argument can be a view to use. This will override the default tags view with its input field.
 
-```
+```` php
 @tags('asgardcms/media', $file)
-```
+````
 
-### Store tags
+### 4. Store tags
 
 In your repositories you need to call the `setTags()` method to persist the tags on your entity.
 
