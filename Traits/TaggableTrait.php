@@ -50,8 +50,8 @@ trait TaggableTrait
         $query->with('translations');
 
         foreach ($tags as $tag) {
-            $query->whereHas('tags', function ($query) use ($type, $tag) {
-                $query->whereHas('translations', function ($query) use ($type, $tag) {
+            $query->whereHas('tags', function (Builder $query) use ($type, $tag) {
+                $query->whereHas('translations', function (Builder $query) use ($type, $tag) {
                     $query->where($type, $tag);
                 });
             });
@@ -76,8 +76,8 @@ trait TaggableTrait
         }
         $query->with('translations');
 
-        return $query->whereHas('tags', function ($query) use ($type, $tags) {
-            $query->whereHas('translations', function ($query) use ($type, $tags) {
+        return $query->whereHas('tags', function (Builder $query) use ($type, $tags) {
+            $query->whereHas('translations', function (Builder $query) use ($type, $tags) {
                 $query->whereIn($type, $tags);
             });
         });
