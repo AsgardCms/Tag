@@ -7,20 +7,20 @@ use Illuminate\Database\Eloquent\Builder;
 interface TaggableInterface
 {
     /**
-     * Returns the entity namespace.
-     * @return string
+     * The Eloquent tag entity name.
+     * @var string
      */
     public static function getEntityNamespace();
 
     /**
-     * Returns the Eloquent tags model name.
+     * Returns the Eloquent tags entity name.
      * @return string
      */
     public static function getTagsModel();
 
     /**
-     * Sets the Eloquent tags model name.
-     * @param  string $model
+     * Sets the Eloquent tags entity name.
+     * @param string $model
      * @return void
      */
     public static function setTagsModel($model);
@@ -29,9 +29,9 @@ interface TaggableInterface
      * Get all the entities with the given tag(s)
      * Optionally specify the column on which
      * to perform the search operation.
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  string|array  $tags
-     * @param  string  $type
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $tags
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWhereTag(Builder $query, $tags, $type = 'slug');
@@ -40,21 +40,21 @@ interface TaggableInterface
      * Get all the entities with one of the given tag(s)
      * Optionally specify the column on which
      * to perform the search operation.
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array $tags
-     * @param  string $type
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param string|array $tags
+     * @param string $type
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeWithTag(Builder $query, $tags, $type = 'slug');
 
     /**
-     * Returns the entity Eloquent tag model object.
+     * Define the eloquent morphMany relationship
      * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
      */
     public function tags();
 
     /**
-     * Returns all the tags under the entity namespace.
+     * Returns all the tags under the current entity namespace.
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public static function allTags();
@@ -66,7 +66,7 @@ interface TaggableInterface
     public static function createTagsModel();
 
     /**
-     * Attaches or detaches the given tags.
+     * Syncs the given tags.
      * @param  string|array $tags
      * @param  string $type
      * @return bool
@@ -90,7 +90,6 @@ interface TaggableInterface
 
     /**
      * Attaches multiple tags to the entity.
-     *
      * @param  string|array  $tags
      * @return bool
      */
