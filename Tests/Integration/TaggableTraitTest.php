@@ -90,6 +90,22 @@ class TaggableTraitTest extends BaseTestCase
         $this->assertCount(1, Page::whereTag(['original-tag', 'random-tag'])->get());
     }
 
+    /** @test */
+    public function it_gets_all_tags_for_a_namespace()
+    {
+        $this->createPage(['original tag', 'other tag', 'random tag']);
+
+        $this->tag->create([
+            'namespace' => 'asgardcms/media',
+            'en' => [
+                'slug' => 'media-tag',
+                'name' => 'media tag',
+            ],
+        ]);
+
+        $this->assertCount(3, Page::allTags()->get());
+    }
+
     private function createPage(array $tags = [])
     {
         return $this->page->create([
