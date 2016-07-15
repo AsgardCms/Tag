@@ -119,3 +119,10 @@ $files = $this->file->whereTag(['your-first-tag', 'some-other-tag'])->get();
 $files = $this->file->whereTag('your-first-tag')->get();
 ```
 
+### `allTags()`: Get all the tags for the entity
+
+You can fetch all the tags for an entity by using the `allTags()` method.
+
+``` php
+$tags = $file->allTags();
+```
