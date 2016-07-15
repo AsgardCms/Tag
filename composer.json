@@ -22,7 +22,8 @@
   },
   "require-dev": {
     "phpunit/phpunit": "~4.0",
-    "orchestra/testbench": "~3.2"
+    "orchestra/testbench": "~3.2",
+    "asgardcms/page-module": "~2.0"
   },
   "autoload": {
     "psr-4": {
