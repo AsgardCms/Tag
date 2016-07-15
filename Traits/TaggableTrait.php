@@ -8,15 +8,12 @@ use Modules\Tag\Entities\Tag;
 trait TaggableTrait
 {
     /**
-     * The Eloquent tags model name.
-     *
-     * @var string
+     * {@inheritdoc}
      */
     protected static $tagsModel = Tag::class;
 
     /**
-     * Returns the Eloquent tags model name.
-     * @return string
+     * {@inheritdoc}
      */
     public static function getTagsModel()
     {
@@ -24,9 +21,7 @@ trait TaggableTrait
     }
 
     /**
-     * Sets the Eloquent tags model name.
-     * @param string $model
-     * @return void
+     * {@inheritdoc}
      */
     public static function setTagsModel($model)
     {
@@ -34,13 +29,7 @@ trait TaggableTrait
     }
 
     /**
-     * Get all the entities with the given tag(s)
-     * Optionally specify the column on which
-     * to perform the search operation.
-     * @param  \Illuminate\Database\Eloquent\Builder $query
-     * @param  string|array  $tags
-     * @param  string  $type
-     * @return \Illuminate\Database\Eloquent\Builder
+     * {@inheritdoc}
      */
     public function scopeWhereTag(Builder $query, $tags, $type = 'slug')
     {
@@ -61,13 +50,7 @@ trait TaggableTrait
     }
 
     /**
-     * Get all the entities with one of the given tag(s)
-     * Optionally specify the column on which
-     * to perform the search operation.
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @param  string|array $tags
-     * @param  string $type
-     * @return \Illuminate\Database\Eloquent\Builder
+     * {@inheritdoc}
      */
     public function scopeWithTag(Builder $query, $tags, $type = 'slug')
     {
@@ -84,8 +67,7 @@ trait TaggableTrait
     }
 
     /**
-     * Returns the entity Eloquent tag model object.
-     * @return \Illuminate\Database\Eloquent\Relations\MorphToMany
+     * {@inheritdoc}
      */
     public function tags()
     {
@@ -93,8 +75,7 @@ trait TaggableTrait
     }
 
     /**
-     * Creates a new model instance.
-     * @return \Illuminate\Database\Eloquent\Model
+     * {@inheritdoc}
      */
     public static function createTagsModel()
     {
@@ -102,8 +83,7 @@ trait TaggableTrait
     }
 
     /**
-     * Returns all the tags under the entity namespace.
-     * @return \Illuminate\Database\Eloquent\Builder
+     * {@inheritdoc}
      */
     public static function allTags()
     {
@@ -113,10 +93,7 @@ trait TaggableTrait
     }
 
     /**
-     * Attaches or detaches the given tags.
-     * @param  string|array $tags
-     * @param  string $type
-     * @return bool
+     * {@inheritdoc}
      */
     public function setTags($tags, $type = 'slug')
     {
@@ -141,10 +118,7 @@ trait TaggableTrait
     }
 
     /**
-     * Attaches multiple tags to the entity.
-     *
-     * @param  string|array  $tags
-     * @return bool
+     * {@inheritdoc}
      */
     public function tag($tags)
     {
@@ -156,9 +130,7 @@ trait TaggableTrait
     }
 
     /**
-     * Attaches the given tag to the entity.
-     * @param  string $name
-     * @return void
+     * {@inheritdoc}
      */
     public function addTag($name)
     {
@@ -201,9 +173,7 @@ trait TaggableTrait
     }
 
     /**
-     * Detaches the given tag from the entity.
-     * @param string $name
-     * @return void
+     * {@inheritdoc}
      */
     public function removeTag($name)
     {
@@ -221,9 +191,7 @@ trait TaggableTrait
     }
 
     /**
-     * Returns the entity class name.
-     *
-     * @return string
+     * {@inheritdoc}
      */
     protected function getEntityClassName()
     {
@@ -235,9 +203,7 @@ trait TaggableTrait
     }
 
     /**
-     * Generate the tag slug using the given name.
-     * @param string $name
-     * @return string
+     * {@inheritdoc}
      */
     protected function generateTagSlug($name)
     {
