@@ -24,7 +24,7 @@ class TagManagerRepositoryTest extends BaseTestCase
     /** @test */
     public function it_initialises_empty_array()
     {
-        $this->assertEquals([], $this->tagManager->getNamespaces());
+        $this->assertEquals(['asgardcms/page'], $this->tagManager->getNamespaces());
     }
 
     /** @test */
@@ -32,7 +32,7 @@ class TagManagerRepositoryTest extends BaseTestCase
     {
         $this->tagManager->registerNamespace(new TestModel());
 
-        $this->assertCount(1, $this->tagManager->getNamespaces());
+        $this->assertCount(2, $this->tagManager->getNamespaces());
     }
 }
 
