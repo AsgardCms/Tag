@@ -4,7 +4,6 @@ namespace Modules\Tag\Tests;
 
 use Modules\Tag\Contracts\TaggableInterface;
 use Modules\Tag\Repositories\TagManager;
-use Modules\Tag\Traits\NamespacedEntity;
 use Modules\Tag\Traits\TaggableTrait;
 
 class TagManagerRepositoryTest extends BaseTestCase
@@ -38,6 +37,6 @@ class TagManagerRepositoryTest extends BaseTestCase
 
 class TestModel implements TaggableInterface
 {
-    use TaggableTrait, NamespacedEntity;
+    use TaggableTrait, Modules\Core\Traits\NamespacedEntity;
     protected static $entityNamespace = 'asgardcms/media';
 }
