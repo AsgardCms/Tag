@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tag\Blade\Facade;
+namespace Modules\Tag\Blade\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

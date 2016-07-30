@@ -14,7 +14,7 @@
         "Modules\\Tag\\Providers\\RouteServiceProvider"
     ],
     "aliases":{
-        "TagWidget": "Modules\\Tag\\Blade\\Facade\\TagWidget"
+        "TagWidget": "Modules\\Tag\\Blade\\Facades\\TagWidget"
     },
     "files": []
 }
