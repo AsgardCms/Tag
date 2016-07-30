@@ -39,6 +39,7 @@ class TagServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishConfig('tag', 'permissions');
+        $this->publishConfig('tag', 'config');
         $this->registerBladeTags();
     }
 
