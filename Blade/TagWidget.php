@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Tag\Display;
+namespace Modules\Tag\Blade;
 
 use Modules\Tag\Contracts\TaggableInterface;
 use Modules\Tag\Repositories\TagRepository;

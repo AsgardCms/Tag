@@ -4,7 +4,7 @@ namespace Modules\Tag\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Modules\Core\Traits\CanPublishConfiguration;
-use Modules\Tag\Display\TagWidget;
+use Modules\Tag\Blade\TagWidget;
 use Modules\Tag\Entities\Tag;
 use Modules\Tag\Repositories\Cache\CacheTagDecorator;
 use Modules\Tag\Repositories\Eloquent\EloquentTagRepository;
@@ -31,7 +31,7 @@ class TagServiceProvider extends ServiceProvider
     {
         $this->registerBindings();
 
-        $this->app->singleton('tag.widget', function ($app) {
+        $this->app->singleton('tag.widget.directive', function ($app) {
             return new TagWidget($app[TagRepository::class]);
         });
     }
