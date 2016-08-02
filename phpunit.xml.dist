@@ -19,8 +19,14 @@
         <whitelist>
             <directory suffix=".php">.</directory>
             <exclude>
-                <directory suffix=".php">.vendor/</directory>
-                <directory suffix=".php">.Modules/</directory>
+                <directory suffix=".php">vendor/</directory>
+                <directory suffix=".php">Modules/</directory>
+                <directory suffix=".php">Repositories/Cache/</directory>
+                <directory suffix=".php">Resources/</directory>
+                <directory suffix=".php">Http/</directory>
+                <directory suffix=".php">Config/</directory>
+                <directory suffix=".php">Sidebar/</directory>
+                <directory suffix=".php">Providers/</directory>
             </exclude>
         </whitelist>
     </filter>
