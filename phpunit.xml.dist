@@ -27,6 +27,7 @@
                 <directory suffix=".php">Config/</directory>
                 <directory suffix=".php">Sidebar/</directory>
                 <directory suffix=".php">Providers/</directory>
+                <directory suffix=".php">Tests/</directory>
             </exclude>
         </whitelist>
     </filter>
