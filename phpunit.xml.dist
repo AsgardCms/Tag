@@ -18,11 +18,11 @@
     <filter>
         <whitelist>
             <directory suffix=".php">.</directory>
+            <exclude>
+                <directory suffix=".php">.vendor/</directory>
+                <directory suffix=".php">.Modules/</directory>
+            </exclude>
         </whitelist>
-        <blacklist>
-            <directory>vendor/</directory>
-            <directory>Modules/</directory>
-        </blacklist>
     </filter>
     <logging>
         <log type="tap" target="build/report.tap"/>
