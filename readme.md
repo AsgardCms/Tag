@@ -2,7 +2,9 @@
 
 [![Latest Version](https://img.shields.io/github/release/asgardcms/tag.svg?style=flat-square)](https://github.com/asgardcms/tag/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Quality Sblock](https://img.shields.io/scrutinizer/g/asgardcms/tag.svg?style=flat-square)](https://scrutinizer-ci.com/g/asgardcms/tag)
+[![Build Status](https://img.shields.io/travis/AsgardCms/Tag/master.svg?style=flat-square)](https://travis-ci.org/AsgardCms/Tag)
+[![Scrutinizer Coverage](https://img.shields.io/scrutinizer/coverage/g/AsgardCms/Tag.svg?maxAge=86400&style=flat-square)](https://scrutinizer-ci.com/g/AsgardCms/Tag/?branch=master)
+[![Quality block](https://img.shields.io/scrutinizer/g/asgardcms/tag.svg?style=flat-square)](https://scrutinizer-ci.com/g/asgardcms/tag)
 [![SensioLabs Insight](https://img.shields.io/sensiolabs/i/0919e4aa-8e6c-43f0-860d-7626cddaf498.svg)](https://insight.sensiolabs.com/projects/0919e4aa-8e6c-43f0-860d-7626cddaf498)
 
 
