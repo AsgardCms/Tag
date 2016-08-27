@@ -67,6 +67,6 @@ class TagWidget
             return request()->old('tags', []);
         }
 
-        return request()->old('tags', $this->entity->tags->lists('slug')->toArray());
+        return request()->old('tags', $this->entity->tags->pluck('slug')->toArray());
     }
 }
