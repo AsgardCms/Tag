@@ -22,7 +22,7 @@ class CacheTagDecorator extends BaseCacheDecorator implements TagRepository
     public function allForNamespace($namespace)
     {
         return $this->cache
-            ->tags($this->entityName, 'global')
+            ->tags([$this->entityName, 'global'])
             ->remember("{$this->locale}.{$this->entityName}.allForNamespace.{$namespace}", $this->cacheTime,
                 function () use ($namespace) {
                     return $this->repository->allForNamespace($namespace);
