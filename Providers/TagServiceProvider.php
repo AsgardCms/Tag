@@ -41,6 +41,7 @@ class TagServiceProvider extends ServiceProvider
         $this->publishConfig('tag', 'permissions');
         $this->publishConfig('tag', 'config');
         $this->registerBladeTags();
+        $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
     }
 
     /**
