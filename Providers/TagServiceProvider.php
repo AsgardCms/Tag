@@ -76,7 +76,7 @@ class TagServiceProvider extends ServiceProvider
             return;
         }
         $this->app['blade.compiler']->directive('tags', function ($value) {
-            return "<?php echo TagWidget::show(array$value); ?>";
+            return "<?php echo TagWidget::show([$value]); ?>";
         });
     }
 }
