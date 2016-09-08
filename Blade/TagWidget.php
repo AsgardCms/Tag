@@ -23,6 +23,10 @@ class TagWidget
      * @var string|null
      */
     private $view;
+    /**
+     * @var string|null
+     */
+    private $name;
 
     public function __construct(TagRepository $tag)
     {
@@ -39,11 +43,13 @@ class TagWidget
 
         $view = $this->view ?: 'tag::admin.fields.tags';
 
+        $name = $this->name ?: 'Tags';
+
         $availableTags = $this->tag->allForNamespace($this->namespace);
 
         $tags = $this->getTags();
 
-        return view($view, compact('availableTags', 'tags'));
+        return view($view, compact('availableTags', 'tags', 'name'));
     }
 
     /**
@@ -55,6 +61,7 @@ class TagWidget
         $this->namespace = array_get($arguments, 0);
         $this->entity = array_get($arguments, 1);
         $this->view = array_get($arguments, 2);
+        $this->name = array_get($arguments, 3);
     }
 
     /**
