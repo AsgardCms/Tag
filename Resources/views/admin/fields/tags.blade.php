@@ -1,5 +1,5 @@
 <div class='form-group{{ $errors->has('tags') ? ' has-error' : '' }}'>
-    {!! Form::label('tags', 'Tags') !!}
+    {!! Form::label('tags', $name) !!}
     <select name="tags[]" id="tags" class="input-tags" multiple>
         <?php foreach ($availableTags as $tag): ?>
         <option value="{{ $tag->slug }}" {{ in_array($tag->slug, $tags) ? ' selected' : null }}>{{ $tag->name }}</option>
